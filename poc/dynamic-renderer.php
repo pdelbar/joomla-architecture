@@ -81,18 +81,19 @@ $renderer->registerContentType('OtherContent', function(OtherContentType $conten
 	return __METHOD__ . '(1): ' . $content->getContents() . "\n";
 });
 $renderer->registerContentType('Default', function (Content $content) {
-	return __METHOD__ . '(2): ' . $content->getContents() . "\n";
+	return __METHOD__ . '(default): ' . $content->getContents() . "\n";
 });
+
 /** @var Content[] $content */
 $content = array(
-	new ContentType('ContentType'),
-	new NewContentType('NewContentType'),
-	new OtherContentType('OtherContentType'),
-	new UnregisteredContentType('UnregisteredContentType'),
+	new ContentType('I am Content'),
+	new NewContentType('I am NewContent'),
+	new OtherContentType('I am OtherContent'),
+	new UnregisteredContentType('I am UnregisteredContent'),
 );
 
 foreach ($content as $c) {
 	$c->accept($renderer);
 }
 
-echo "\nOutput:\n" . $renderer->getOutput();
+echo "<pre>\nOutput:\n" . $renderer->getOutput() . '</pre>';
